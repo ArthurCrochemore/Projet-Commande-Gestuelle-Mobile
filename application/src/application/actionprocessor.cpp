@@ -1,16 +1,13 @@
-#include <./photoprocessor.cpp>
-#include <./serviceidentify.cpp>
-#include <../presentation/cameracontroller.cpp>
+#include "./actionprocessor.h"
 
-class ActionProcessor {
-private:
-    PhotoProcessor capturer;
-    IServiceIdentifyAction* action;
+ActionProcessor::ActionProcessor(IServiceIdentifyAction* action) : action(action) {}
 
-public:
-    ActionProcessor(IServiceIdentifyAction* action) : action(action) {}
+void ActionProcessor::process(const QString &imagePath) {
+    std::vector<double> image = photoprocessor.process(imagePath);
 
-    void process() {
-        // TODO : Implémentation de la logique de traitement de l'action
-    }
-};
+    // if (action->identify(image)) {
+    //     executeAction();
+    // }
+
+    // TODO : Implémenter correctement
+}

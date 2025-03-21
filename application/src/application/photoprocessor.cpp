@@ -1,11 +1,7 @@
-#include "../learning/imageadapter.cpp"
+#include "./photoprocessor.h"
 
-/*
- * Classe de traitement de photo
- */
-class PhotoProcessor {
-    public:
-    std::vector<double> process(QImage imagePath) {
-        return QImageToVectorAdapter::vectorize(imagePath);
-    }
-};
+std::vector<double> PhotoProcessor::process(const QString &imagePath) {
+    QImage image = QImage(imagePath);
+
+    return QImageToVectorAdapter().vectorize(image);
+}

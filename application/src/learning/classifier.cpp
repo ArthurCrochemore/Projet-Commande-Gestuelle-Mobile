@@ -1,29 +1,9 @@
-#include <cstdint>
-#include <vector>
+#include "./classifier.h"
 
-class IClassifier {
-public:
-    virtual uint8_t predict(std::vector<double> features) = 0;
-};
+uint8_t VolumeClassifier::predict(std::vector<double> features) {
+    // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour le volume
+}
 
-class VolumeClassifier : public IClassifier {
-public:
-    const uint8_t NOTHING = 0;
-    const uint8_t UP = 1;
-    const uint8_t DOWN = 2;
-
-    uint8_t predict(std::vector<double> features) override {
-        // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour le volume
-    }
-};
-
-class BrightnessClassifier : public IClassifier {
-public:
-    const uint8_t NOTHING = 0;
-    const uint8_t UP = 1;
-    const uint8_t DOWN = 2;
-
-    uint8_t predict(std::vector<double> features) override {
-        // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour la luminosité
-    }
-};
+uint8_t BrightnessClassifier::predict(std::vector<double> features) {
+    // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour la luminosité
+}

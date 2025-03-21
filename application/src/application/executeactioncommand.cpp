@@ -1,20 +1,9 @@
-#include "./serviceidentify.cpp"
+#include "./executeactioncommand.h"
 
-class ICommand {
-public:
-    virtual void execute() = 0;
-    virtual ~ICommand() = default;
-};
+ExecuteActionCommand::ExecuteActionCommand(IServiceIdentifyAction* action, QImage img) : action(action), image(img) {}
 
-class ExecuteActionCommand : public ICommand {
-private:
-    IServiceIdentifyAction* action;
-    QImage image;
-public:
-    ExecuteActionCommand(IServiceIdentifyAction* action, QImage img) : action(action), image(img) {}
-    void execute() override {
-        if (action->identify(image)) {
-            // TODO : Implémentation de la logique liée au traitement de l'action
-        }
+void ExecuteActionCommand::execute() {
+    if (action->identify(image)) {
+        // TODO : Implémentation de la logique liée au traitement de l'action
     }
-};
+}

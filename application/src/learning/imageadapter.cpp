@@ -1,13 +1,5 @@
-#include <vector>
+#include "imageadapter.h"
 
-class IImageAdapter {
-    public:
-    virtual std::vector<double> vectorize(QImage image) = 0;
-};
-
-class QImageToVectorAdapter : IImageAdapter {
-    public:
-    std::vector<double> vectorize(QImage image) override {
-        // TODO: Implémentation de la vectorisation
-    }
-};
+std::vector<double> QImageToVectorAdapter::vectorize(QImage image) {
+    // TODO: Implémentation de la vectorisation
+}
