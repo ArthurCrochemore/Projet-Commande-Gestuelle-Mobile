@@ -1,15 +1,10 @@
-#include <vector>
+#include "preprocessingdecorator.h"
 
-class IPreprocessingDecorator {
-    public:
-    virtual void process(std::vector<double>& data) = 0;
-    virtual ~IPreprocessingDecorator() = default;
-};
+void NormalizationPreprocessor::process(std::vector<double>& data) {
+    double max_val = *std::max_element(data.begin(), data.end());
+    if (max_val == 0) return;  // Évite la division par zéro
 
-class NormalizationPreprocessor : public IPreprocessingDecorator {
-    public:
-        void process(std::vector<double>& data) override {
-            // Implémentation de la normalisation
-        }
-    };
-    
+    for (auto& val : data) {
+        val /= max_val; // Normalisation entre 0 et 1
+    }
+}
