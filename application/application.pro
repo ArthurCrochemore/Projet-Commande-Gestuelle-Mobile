@@ -1,4 +1,9 @@
-QT += quick
+QT += quick \
+      qml \
+      core \
+      gui \
+      multimedia \
+      multimediawidgets
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -6,20 +11,14 @@ QT += quick
 
 SOURCES += \
         main.cpp \
-        src/application/actionfactory.cpp \
-        src/application/actions.cpp \
-        src/application/actionvolume.cpp \
-        src/application/command.cpp \
-        src/application/maincontroller.cpp \
+        src/application/actionprocessor.cpp \
+        src/application/executeactioncommand.cpp \
         src/application/photoprocessor.cpp \
-        src/ia/classifier.cpp \
-        src/ia/imagevectorizeradaptater.cpp \
-        src/ia/predictionobserver.cpp \
-        src/ia/preprocessingdecorator.cpp \
-        src/ia/vectorizationstrategy.cpp \
+        src/application/serviceidentify.cpp \
+        src/learning/classifier.cpp \
+        src/learning/imageadapter.cpp \
+        src/learning/preprocessingdecorator.cpp \
         src/model/databasemanager.cpp \
-        src/model/modelmanager.cpp \
-        src/model/modeltrainer.cpp \
         src/presentation/cameracontroller.cpp \
         src/presentation/mainwindow.cpp
 
@@ -39,14 +38,18 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     android/AndroidManifest.xml \
     android/build.gradle \
-    android/gradle.properties \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew \
-    android/gradlew.bat \
-    android/res/values/libs.xml \
-    main.qml
+    android/res/values/libs.xml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 FORMS +=
+
+HEADERS += \
+    src/application/actionprocessor.h \
+    src/application/executeactioncommand.h \
+    src/application/photoprocessor.h \
+    src/application/serviceidentify.h \
+    src/learning/classifier.h \
+    src/learning/imageadapter.h \
+    src/learning/preprocessingdecorator.h \
+    src/presentation/cameracontroller.h
