@@ -1,0 +1,18 @@
+# Dossiers de build
+application/android*
+application/build/
+
+# Fichiers de configuration utilisateur
+application/*.pro.user
+application/.qtc_clangd/
+application/CMakeLists.txt.user
+
+# Dossiers de configuration et de build
+learning/.vs/
+learning/x64/
+learning/packages/
+learning/src/x64/
+
+# Fichiers générés automatiquement par Visual Studio
+learning/src/*.vcxproj.user
+learning/src/*.vcxproj.filters
