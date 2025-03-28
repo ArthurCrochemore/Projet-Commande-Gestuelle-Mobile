@@ -57,4 +57,6 @@ Pour la version orientée objet du projet, j'ai choisi d'implémenter six design
 ### **Configuration du projet**
 1. Ouvrir une console de commande dans le dossier `debug` et exécuter la commande suivante :  
    ```sh
+   mkdir build
+   cd build
    cmake -DCMAKE_PREFIX_PATH="/path/to/libtorch;/path/to/Qt5.15" ..
