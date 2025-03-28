@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <cstdint>
 #include <iostream>
+#include "../application/src/learning/imageadapter.h"
 
 // Varaiables globales pour les dimensions des images
 #define WIDTH 300
@@ -28,27 +29,6 @@ std::unordered_map<QString, Type> types = {
 	// ajouter d'autres types ici ...
 };
 
-std::vector<double> vectorize(QImage image) {
-    std::vector<double> pixelValues;
-
-    image = image.scaled(WIDTH, HEIGHT);
-
-    if (image.format() != QImage::Format_Grayscale8) {
-        image = image.convertToFormat(QImage::Format_Grayscale8);
-    }
-
-    pixelValues.reserve(image.width() * image.height());
-    
-    for (int y = 0; y < image.height(); ++y) {
-        const uchar* rowData = image.scanLine(y);
-        for (int x = 0; x < image.width(); ++x) {
-            pixelValues.push_back(static_cast<double>(rowData[x]) / 255.0);
-        }
-    }
-
-    return pixelValues;
-}
-
 std::vector<ImageData> initialization(QString type_name, Type type) {
     using namespace std;
 
@@ -68,7 +48,7 @@ std::vector<ImageData> initialization(QString type_name, Type type) {
             }
 
             ImageData data;
-            data.pixelValues = vectorize(image);
+            data.pixelValues = QImageToVectorAdapter{}.vectorize(image);
             data.classe = idx_classe;
 
             pictures_vectorized.push_back(data);
