@@ -25,7 +25,7 @@ Pour la version orientée objet du projet, j'ai choisi d'implémenter six design
 
 ---
 
-## **Projet Application (IFT785-51)**
+## **Projet Application**
 ### **Technologies utilisées**
 - **Langage** : C++  
 - **Framework** : Qt 5.15.18 pour Android (Installation via QtCreator : [Qt Download](https://www.qt.io/download-dev))  
@@ -48,7 +48,7 @@ Pour la version orientée objet du projet, j'ai choisi d'implémenter six design
 
 ---
 
-## **Projet Learning (IFT729-51)**
+## **Projet Learning**
 ### **Technologies utilisées**
 - **Langage** : C++ (Compilation via Visual Studio 17 2022)  
 - **Framework** : Qt 5.15.18 (Version `msvc2019_64`) – [Installation via QtCreator](https://www.qt.io/download-dev)  
@@ -60,3 +60,7 @@ Pour la version orientée objet du projet, j'ai choisi d'implémenter six design
    mkdir build
    cd build
    cmake -DCMAKE_PREFIX_PATH="/path/to/libtorch;/path/to/Qt5.15" ..
+
+### **Références & Licence**
+Pour l'implémentation du CNN sous Pytorch, je me suis référé au repository suivant, sous license MIT :
+https://github.com/prabhuomkar/pytorch-cpp/tree/master
