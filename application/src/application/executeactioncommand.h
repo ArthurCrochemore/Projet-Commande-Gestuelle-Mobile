@@ -1,22 +1,30 @@
-#include "serviceidentify.h"
-#include <QImage>
+#include <QDebug> // TODO : Remove this include ?
 
-#ifndef EXECUTEACTIONCOMMAND_H
-#define EXECUTEACTIONCOMMAND_H
+#ifndef EXECUTE_ACTION_COMMAND_H
+#define EXECUTE_ACTION_COMMAND_H
 
-class ICommand {
-public:
-    virtual void execute() = 0;
-    virtual ~ICommand() = default;
+#include "./serviceidentify.h"
+#include "../learning/classifier.h"
+
+class IExecuteActionCommand {
+    public:
+    virtual ~IExecuteActionCommand() = default;
+    virtual void execute(uint8_t predicted) const = 0;
 };
 
-class ExecuteActionCommand : public ICommand {
-private:
-    IServiceIdentifyAction* action;
-    QImage image;
-public:
-    ExecuteActionCommand(IServiceIdentifyAction* action, QImage img);
-    void execute() override;
+class ExecuteActionCommandVolume : public IExecuteActionCommand {
+    public:
+    void execute(uint8_t predicted) const override;
 };
 
-#endif // EXECUTEACTIONCOMMAND_H
+class ExecuteActionCommandBrightness : public IExecuteActionCommand {
+    public:
+    void execute(uint8_t predicted) const override;
+};
+
+class ExecuteActionCommandFactory {
+    public:
+    static IExecuteActionCommand* createAction(uint8_t actionType);
+};
+
+#endif // EXECUTE_ACTION_COMMAND_H
