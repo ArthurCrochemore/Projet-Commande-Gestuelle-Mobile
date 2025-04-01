@@ -1,12 +1,13 @@
 #include <QImage>
-#include "../learning/imageadapter.h"
 
 #ifndef PHOTOPROCESSOR_H
 #define PHOTOPROCESSOR_H
 
+#include "../learning/imageadapter.h"
+
 class PhotoProcessor {
 public:
-    std::vector<double> process(const QString &imagePath);
+    std::vector<std::vector<greyscale_value>> process(const QString &imagePath);
 };
 
 #endif // PHOTOPROCESSOR_H

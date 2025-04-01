@@ -1,7 +1,7 @@
 #include <vector>
 #include <QImage>
 
-#include <qDebug> // TODO : a suppr
+#include <QDebug> // TODO : a suppr
 
 #ifndef IMAGEADAPTER_H
 #define IMAGEADAPTER_H
