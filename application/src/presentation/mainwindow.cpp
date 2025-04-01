@@ -5,7 +5,6 @@
 
 class MainWindow {
     public:
-    
         static int run(int argc, char *argv[])
         {
             QGuiApplication app(argc, argv);

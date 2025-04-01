@@ -1,5 +1,11 @@
 #include "imageadapter.h"
 
+/**
+ * Fonction responsable de la vectorisation d'une image
+ * 
+ * @param image : image à vectoriser
+ * @return : image vectorisée
+ */
 std::vector<std::vector<greyscale_value>> QImageToVectorAdapter::vectorize(QImage image) {
     std::vector<std::vector<greyscale_value>> pixelValues(HEIGHT, std::vector<greyscale_value>(WIDTH));
 
