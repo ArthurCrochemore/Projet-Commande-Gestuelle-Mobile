@@ -1,3 +1,5 @@
+#include <iostream>
+#include <QDebug>
 #include "preprocessingdecorator.h"
 
 /**
@@ -7,6 +9,10 @@
  * @return : void
  */
 void NormalizationPreprocessor::process(picture_vector& data) {
-    // TODO : Implémenter la normalisation sur une matrice de données
+    for (auto& row : data) {
+        for (auto& pixel : row) {
+            pixel = static_cast<greyscale_value>(pixel) / (greyscale_value) 255.0; // Normalisation entre 0 et 1
+        }
+    }
 }
 

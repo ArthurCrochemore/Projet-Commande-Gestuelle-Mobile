@@ -18,9 +18,11 @@ picture_vector QImageToVectorAdapter::vectorize(QImage image) {
     for (int y = 0; y < HEIGHT; ++y) {
         const uchar* rowData = image.scanLine(y);
         for (int x = 0; x < WIDTH; ++x) {
-            pixelValues[y][x] = rowData[x] / 255.0;
+            pixelValues[y][x] = rowData[x];
         }
     }
+    
+    NormalizationPreprocessor().process(pixelValues);
 
     return pixelValues;
 }

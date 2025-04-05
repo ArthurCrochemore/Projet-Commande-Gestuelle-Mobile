@@ -1,9 +1,18 @@
 #include <algorithm>
+#include <vector>
+#include <QImage>
 
 #ifndef PREPROCESSINGDECORATOR_H
 #define PREPROCESSINGDECORATOR_H
 
-#include "imageadapter.h"
+// Variables globales pour les dimensions des images
+#define WIDTH 300
+#define HEIGHT 400
+
+// Variable pour le type de valeur de gris
+#define greyscale_value float
+#define picture_vector std::vector<std::vector<greyscale_value>>
+#define picture_vector1D std::vector<greyscale_value>
 
 class IPreprocessingDecorator {
     public:
