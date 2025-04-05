@@ -29,9 +29,10 @@ Pour la version orientée objet du projet, j'ai choisi d'implémenter six design
 ### **Technologies utilisées**
 - **Langage** : C++  
 - **Framework** : Qt 5.15.18 pour Android (Installation via QtCreator : [Qt Download](https://www.qt.io/download-dev))  
+                  Qt 5.15.18 MinGW 64-bit pour les tests
 - **JDK** : 17.0.13  
 
-### **Configuration du projet**
+### **Configuration du projet Android**
 1. **Configuration du projet sous QtCreator**  
    - Cible : `arm64-v8a`  
 

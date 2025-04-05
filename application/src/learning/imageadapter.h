@@ -1,5 +1,3 @@
-#include <QDebug> // TODO : a suppr
-
 #ifndef IMAGEADAPTER_H
 #define IMAGEADAPTER_H
 

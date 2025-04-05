@@ -77,7 +77,8 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "*.gitignore": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "*.moc": "cpp"
     },
     "sonarlint.pathToCompileCommands": "${workspaceFolder}\\application\\build\\Android_Qt_5_15_18_Clang_Multi_Abi-Debug\\.qtc_clangd\\compile_commands.json"
 }

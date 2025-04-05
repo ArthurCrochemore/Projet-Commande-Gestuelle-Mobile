@@ -10,6 +10,7 @@ void ExecuteActionCommandVolume::execute(uint8_t predicted) const {
     switch(predicted) {
         case VolumeClassifier::NOTHING:
             qDebug() << "Aucune action pour le volume";
+
             break;
         case VolumeClassifier::UP:
             // TODO : Implémentation de l'action pour augmenter le volume
@@ -36,6 +37,7 @@ void ExecuteActionCommandBrightness::execute(uint8_t predicted) const {
     switch(predicted) {
         case BrightnessClassifier::NOTHING:
             qDebug() << "Aucune action pour la brightness";
+            
             break;
         case BrightnessClassifier::UP:
             // TODO : Implémentation de l'action pour augmenter la brightness

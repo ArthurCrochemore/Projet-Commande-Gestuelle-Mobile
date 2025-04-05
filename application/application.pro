@@ -1,20 +1,20 @@
-CONFIG += c++17
+CONFIG += c++17 
 
-INCLUDEPATH += C:/libtorch/include
-INCLUDEPATH += C:/libtorch/include/torch/csrc/api/include
+# INCLUDEPATH += C:/libtorch/include
+# INCLUDEPATH += C:/libtorch/include/torch/csrc/api/include
 
 
-LIBS += -LC:/libtorch/lib \
-        C:/libtorch/lib/torch_cpu.lib \
-        C:/libtorch/lib/torch.lib \
-        C:/libtorch/lib/c10.lib
+# LIBS += -LC:/libtorch/lib \
+#         C:/libtorch/lib/torch_cpu.lib \
+#         C:/libtorch/lib/torch.lib \
+#         C:/libtorch/lib/c10.lib
 
 QT += quick \
       qml \
       core \
       gui \
       multimedia \
-      multimediawidgets
+      multimediawidgets 
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
