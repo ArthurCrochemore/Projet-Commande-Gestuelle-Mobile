@@ -6,6 +6,7 @@ application/build/
 application/*.pro.user
 application/.qtc_clangd/
 application/CMakeLists.txt.user
+application/src/build/*
 
 # Dossiers de configuration et de build
 learning/.vs/
