@@ -17,7 +17,7 @@ void ActionProcessor::process(const QString &imagePath) {
     auto pre = std::chrono::high_resolution_clock::now();
 
     qDebug() << "Vectorisation process ...";
-    std::vector<std::vector<greyscale_value>> image = photoprocessor.process(imagePath);
+    picture_vector image = photoprocessor.process(imagePath);
 
     qDebug() << "Prediction process ...";
     auto predicted = serviceIdentification->identify(image);

@@ -1,17 +1,28 @@
+#include <algorithm>
 #include <vector>
+#include <QImage>
 
 #ifndef PREPROCESSINGDECORATOR_H
 #define PREPROCESSINGDECORATOR_H
 
+// Variables globales pour les dimensions des images
+#define WIDTH 300
+#define HEIGHT 400
+
+// Variable pour le type de valeur de gris
+#define greyscale_value float
+#define picture_vector std::vector<std::vector<greyscale_value>>
+#define picture_vector1D std::vector<greyscale_value>
+
 class IPreprocessingDecorator {
     public:
-    virtual void process(std::vector<double>& data) = 0;
+    virtual void process(picture_vector& data) = 0;
     virtual ~IPreprocessingDecorator() = default;
 };
 
 class NormalizationPreprocessor : public IPreprocessingDecorator {
 public:
-    void process(std::vector<double>& data) override;
+    void process(picture_vector& data) override;
 };
     
 #endif // PREPROCESSINGDECORATOR_H

@@ -7,7 +7,7 @@
 
 class PhotoProcessor {
 public:
-    std::vector<std::vector<greyscale_value>> process(const QString &imagePath);
+    picture_vector process(const QString &imagePath);
 };
 
 #endif // PHOTOPROCESSOR_H

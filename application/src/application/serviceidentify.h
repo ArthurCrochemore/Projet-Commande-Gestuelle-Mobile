@@ -9,18 +9,18 @@
 
 class IServiceIdentifyAction {
 public:
-    virtual uint8_t identify(std::vector<std::vector<greyscale_value>>& features) = 0;
+    virtual uint8_t identify(picture_vector& features) = 0;
     virtual ~IServiceIdentifyAction() = default;
 };
 
 class ServiceIdentifyActionVolume : public IServiceIdentifyAction {
 public:
-    uint8_t identify(std::vector<std::vector<greyscale_value>>& features) override;
+    uint8_t identify(picture_vector& features) override;
 };
 
 class ServiceIdentifyActionBrightness : public IServiceIdentifyAction {
 public:
-    uint8_t identify(std::vector<std::vector<greyscale_value>>& features) override;
+    uint8_t identify(picture_vector& features) override;
 };
 
 class IdentifyActionFactory {
