@@ -12,15 +12,17 @@
 
 // Variable pour le type de valeur de gris
 #define greyscale_value float
+#define picture_vector std::vector<std::vector<greyscale_value>>
+#define picture_vector1D std::vector<greyscale_value>
 
 class IImageAdapter {
     public:
-    virtual std::vector<std::vector<greyscale_value>> vectorize(QImage image) = 0;
+    virtual picture_vector vectorize(QImage image) = 0;
 };
 
 class QImageToVectorAdapter : IImageAdapter {
     public:
-    std::vector<std::vector<greyscale_value>> vectorize(QImage image) override;
+    picture_vector vectorize(QImage image) override;
 };
 
 #endif // IMAGEADAPTER_H

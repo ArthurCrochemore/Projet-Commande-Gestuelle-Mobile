@@ -6,8 +6,8 @@
  * @param image : image à vectoriser
  * @return : image vectorisée
  */
-std::vector<std::vector<greyscale_value>> QImageToVectorAdapter::vectorize(QImage image) {
-    std::vector<std::vector<greyscale_value>> pixelValues(HEIGHT, std::vector<greyscale_value>(WIDTH));
+picture_vector QImageToVectorAdapter::vectorize(QImage image) {
+    picture_vector pixelValues(HEIGHT, picture_vector1D(WIDTH));
 
     image = image.scaled(WIDTH, HEIGHT, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 

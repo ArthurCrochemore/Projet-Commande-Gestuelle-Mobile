@@ -6,7 +6,7 @@
  * @param features : image vectorisée
  * @return : classe prédite
  */
-uint8_t ServiceIdentifyActionVolume::identify(std::vector<std::vector<greyscale_value>>& features) {
+uint8_t ServiceIdentifyActionVolume::identify(picture_vector& features) {
     // TODO : Implémentation de l'identification d'une action lié au volume
     return VolumeClassifier::UP;
 }
@@ -17,7 +17,7 @@ uint8_t ServiceIdentifyActionVolume::identify(std::vector<std::vector<greyscale_
  * @param features : image vectorisée
  * @return : classe prédite
  */
-uint8_t ServiceIdentifyActionBrightness::identify(std::vector<std::vector<greyscale_value>>& features) {
+uint8_t ServiceIdentifyActionBrightness::identify(picture_vector& features) {
     // TODO : Implémentation de l'identification d'une action lié au volume
     return BrightnessClassifier::UP;
 }
