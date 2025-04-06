@@ -5,8 +5,9 @@ Cette application mobile en C++ utilise le framework Qt et la caméra du disposi
 
 ## Versionnage
 Ce projet étant réalisé dans le cadre de deux cours distincts, il existe deux versions :  
-- **Cours IFT785-51** : L'objectif principal est l'assurance qualité, avec une structure orientée objet refactorisée, l'intégration de divers design patterns et des tests. Le traitement des images se fait par capture photo. Cette version est disponible dans les branches `main` et `oriente-objet`.  
-- **Cours IFT729-51** : L'objectif est une approche en temps réel, avec un code optimisé et une captation d'images en continu. Cette version est disponible dans la branche `temps-reel`.  
+- **Cours IFT785-51** : L'objectif principal est l’assurance qualité et l’architecture orientée objet. Cette version est disponible dans la branche `oriente-objet`.  
+- **Cours IFT729-51** : L’objectif est une approche **temps réel**, avec une architecture logicielle réduite, un traitement continu des images et une optimisation pour la réactivité. Cette version correspond à la branche actuelle : `temps-reel`.
+
 
 ## **Fonctionnalités principales**
 L'application repose sur l'utilisation de la caméra comme capteur pour la reconnaissance des gestes manuels et leur association à des actions définies.  
@@ -14,14 +15,12 @@ L'application repose sur l'utilisation de la caméra comme capteur pour la recon
 - Implémentation d'un traitement en temps réel pour garantir une réactivité optimale entre les gestes capturés et les actions déclenchées.  
 - Application des principes de conception orientés objet afin d'assurer une architecture robuste et évolutive du code.
 
-## **Design Patterns**
-Pour la version orientée objet du projet, j'ai choisi d'implémenter six design patterns :  
-- **Factory** : Création des objets `ServiceIdentifyAction` via une classe Factory.  
-- **Command** : Encapsulation des actions dans `ExecuteActionCommand`.  
-- **Adapter** : Conversion des images en données numériques pour l’apprentissage et la prédiction.  
-- **Observer** : Implémentation du pattern Observer dans le prétraitement des données pour faciliter l'évolution du code.  
-- **Strategy** : Mise en place d’une stratégie de reconnaissance dans `IServiceIdentifyAction` pour rendre le code plus modulable.  
-- **Dependency Injection** : Injection de `IServiceIdentifyAction*` dans `ActionProcessor` plutôt que d'instancier directement une action.
+---
+
+## **Livrables**
+
+- **Livrable L00** : [Lien vers le document](https://docs.google.com/document/d/1dxV90q5wieGHWotVLMUWe4uu0Uo-s-eVv2p3oOh0p9M/edit?usp=sharing)  
+- **Livrable L02** : [Lien vers le document](https://docs.google.com/document/d/16lkcUj3f9ajJCZeLFlRcMJWj8JKbY6gYf9sgYXHE6dw/edit?usp=sharing)  
 
 ---
 
