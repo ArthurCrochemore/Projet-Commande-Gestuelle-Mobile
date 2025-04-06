@@ -13,16 +13,12 @@ ActionProcessor::ActionProcessor(uint8_t actionType) {
  */
 void ActionProcessor::process(const QString &imagePath) {
 
-    qDebug() << "Start ActionProcessor";
     auto pre = std::chrono::high_resolution_clock::now();
 
-    qDebug() << "Vectorisation process ...";
     picture_vector image = photoprocessor.process(imagePath);
 
-    qDebug() << "Prediction process ...";
     auto predicted = serviceIdentification->identify(image);
 
-    qDebug() << "Action process ...";
     action->execute(predicted);
 
     auto post = std::chrono::high_resolution_clock::now();

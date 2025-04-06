@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/application/serviceidentify.h"
 #include "../../src/learning/classifier.h"
 #include "../../src/learning/imageadapter.h"

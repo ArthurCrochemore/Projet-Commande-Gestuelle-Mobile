@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/presentation/cameracontroller.h"
 
 class TestCameraController: public QObject {

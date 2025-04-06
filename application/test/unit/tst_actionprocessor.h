@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/application/actionprocessor.h"
 
 class TestActionProcessor: public QObject {

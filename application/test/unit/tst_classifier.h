@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/learning/classifier.h"
 
 class TestClassifier : public QObject {

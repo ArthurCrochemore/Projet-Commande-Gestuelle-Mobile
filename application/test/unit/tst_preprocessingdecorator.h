@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/learning/preprocessingdecorator.h"
 
 class TestPreprocessingDecorator: public QObject {
