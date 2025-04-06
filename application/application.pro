@@ -24,12 +24,9 @@ SOURCES += \
         main.cpp \
         src/application/actionprocessor.cpp \
         src/application/executeactioncommand.cpp \
-        src/application/photoprocessor.cpp \
         src/application/serviceidentify.cpp \
         src/learning/classifier.cpp \
         src/learning/imageadapter.cpp \
-        src/learning/preprocessingdecorator.cpp \
-        src/model/databasemanager.cpp \
         src/presentation/cameracontroller.cpp \
         src/presentation/mainwindow.cpp
 
@@ -58,9 +55,7 @@ FORMS +=
 HEADERS += \
     src/application/actionprocessor.h \
     src/application/executeactioncommand.h \
-    src/application/photoprocessor.h \
     src/application/serviceidentify.h \
     src/learning/classifier.h \
     src/learning/imageadapter.h \
-    src/learning/preprocessingdecorator.h \
     src/presentation/cameracontroller.h

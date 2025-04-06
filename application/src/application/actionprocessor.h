@@ -1,5 +1,6 @@
 #include <chrono>
 #include <QString>
+#include <QImage>
 
 #include <QDebug> // TODO : retirer
 
@@ -7,19 +8,17 @@
 #define ACTIONPROCESSOR_H
 
 #include "./executeactioncommand.h"
-#include "./photoprocessor.h"
 #include "./serviceidentify.h"
 #include "../learning/imageadapter.h"
 
 class ActionProcessor {
 private:
-    PhotoProcessor photoprocessor;
-    IServiceIdentifyAction* serviceIdentification;
-    IExecuteActionCommand* action;
+    uint8_t actionType;
+    QImage image;
+    picture_vector pixelValues;
 
 public:
     ActionProcessor(uint8_t actionType);
-
     void process(const QString &imagePath);
 };
 

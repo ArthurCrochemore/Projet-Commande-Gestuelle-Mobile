@@ -7,28 +7,22 @@
 #include "../learning/classifier.h"
 #include "../learning/imageadapter.h"
 
-class IServiceIdentifyAction {
+class ServiceIdentifyActionVolume {
 public:
-    virtual uint8_t identify(picture_vector& features) = 0;
-    virtual ~IServiceIdentifyAction() = default;
+    static uint8_t identify(picture_vector& features);
 };
 
-class ServiceIdentifyActionVolume : public IServiceIdentifyAction {
+class ServiceIdentifyActionBrightness {
 public:
-    uint8_t identify(picture_vector& features) override;
+    static uint8_t identify(picture_vector& features);
 };
 
-class ServiceIdentifyActionBrightness : public IServiceIdentifyAction {
-public:
-    uint8_t identify(picture_vector& features) override;
-};
-
-class IdentifyActionFactory {
+class ServiceIdentifyAction {
 public:
     static const uint8_t VOLUME = 1;
     static const uint8_t BRIGHTNESS = 2;
 
-    static IServiceIdentifyAction* createIdentifyAction(uint8_t actionType);
+    static uint8_t identify(picture_vector& features, uint8_t actionType);
 };
 
 #endif // SERVICEIDENTIFY_H

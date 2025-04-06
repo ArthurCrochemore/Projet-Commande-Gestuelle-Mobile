@@ -23,15 +23,19 @@ uint8_t ServiceIdentifyActionBrightness::identify(picture_vector& features) {
 }
 
 /**
- * Fonction responsable de la création d'une action d'identification en fonction du type d'action
+ * Fonction initialisant le service d'identification de l'action à réaliser en fonction de l'image
  * 
- * @param actionType : type d'action à réaliser
- * @return : action d'identification à réaliser
+ * @param features : image vectorisée
+ * @return : classe prédite
  */
-IServiceIdentifyAction* IdentifyActionFactory::createIdentifyAction(uint8_t actionType) {
+uint8_t ServiceIdentifyAction::identify(picture_vector& features, uint8_t actionType) {
     switch (actionType) {
-        case IdentifyActionFactory::VOLUME: return new ServiceIdentifyActionVolume();
-        case IdentifyActionFactory::BRIGHTNESS: return new ServiceIdentifyActionBrightness();
-        default: return nullptr;
+        case ServiceIdentifyAction::VOLUME:
+            return ServiceIdentifyActionVolume::identify(features);
+        case ServiceIdentifyAction::BRIGHTNESS:
+            return ServiceIdentifyActionBrightness::identify(features);
+        default:
+            break;
     }
+    return VolumeClassifier::UP;
 }

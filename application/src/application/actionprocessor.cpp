@@ -1,8 +1,9 @@
 #include "./actionprocessor.h"
 
 ActionProcessor::ActionProcessor(uint8_t actionType) {
-    serviceIdentification = IdentifyActionFactory::createIdentifyAction(actionType);
-    action = ExecuteActionCommandFactory::createAction(actionType);
+    this->actionType = actionType;
+    this->image = QImage(WIDTH, HEIGHT, QImage::Format_Grayscale8); // TODO : revoir si c'est utile
+    this->pixelValues = picture_vector(HEIGHT, picture_vector1D(WIDTH));
 }
 
 /**
@@ -12,18 +13,13 @@ ActionProcessor::ActionProcessor(uint8_t actionType) {
  * @return : void
  */
 void ActionProcessor::process(const QString &imagePath) {
-
-    qDebug() << "Start ActionProcessor";
     auto pre = std::chrono::high_resolution_clock::now();
 
-    qDebug() << "Vectorisation process ...";
-    picture_vector image = photoprocessor.process(imagePath);
+    QImageToVectorAdapter::vectorize(imagePath, this->image, this->pixelValues);
 
-    qDebug() << "Prediction process ...";
-    auto predicted = serviceIdentification->identify(image);
+    uint8_t predicted = ServiceIdentifyAction::identify(this->pixelValues, this->actionType);
 
-    qDebug() << "Action process ...";
-    action->execute(predicted);
+    ExecuteActionCommand::execute(predicted, this->actionType);
 
     auto post = std::chrono::high_resolution_clock::now();
     qDebug() << "Action réalisée en " << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) << " ms";

@@ -5,27 +5,22 @@
 
 #include "../learning/imageadapter.h"
 
-class IClassifier {
-public:
-    virtual uint8_t predict(picture_vector& features) = 0;
-};
-
-class VolumeClassifier : public IClassifier {
+class VolumeClassifier {
 public:
     const static uint8_t NOTHING = 0;
     const static uint8_t UP = 1;
     const static uint8_t DOWN = 2;
 
-    uint8_t predict(picture_vector& features) override;
+    static uint8_t predict(picture_vector& features);
 };
 
-class BrightnessClassifier : public IClassifier {
+class BrightnessClassifier {
 public:
     const static uint8_t NOTHING = 0;
     const static uint8_t UP = 1;
     const static uint8_t DOWN = 2;
 
-    uint8_t predict(picture_vector& features) override;
+    static uint8_t predict(picture_vector& features);
 };
 
 #endif // CLASSIFIER_H

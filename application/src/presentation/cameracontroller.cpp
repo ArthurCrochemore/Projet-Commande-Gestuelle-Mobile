@@ -1,6 +1,14 @@
 #include "cameracontroller.h"
 
-CameraController::CameraController(QObject *parent): QObject(parent) {}
+CameraController::CameraController(QObject *parent,
+                                    uint8_t actionType // TODO : choix depuis l'UI
+                                   ): QObject(parent) {
+    actionProcessor = new ActionProcessor(actionType);
+}
+
+CameraController::~CameraController() {
+    delete actionProcessor;
+}
 
 /**
  * Fonction responsable de la prise de photo et de l'ammorcement du traitement de l'image
@@ -10,10 +18,5 @@ CameraController::CameraController(QObject *parent): QObject(parent) {}
  */
 void CameraController::takePicture(const QString &imagePath) {
     // Code to take a picture
-    qDebug() << "Image sauvegardée à:" << imagePath;
-
-    auto actionType = IdentifyActionFactory::VOLUME; // TODO : choix depuis l'UI
-
-    ActionProcessor actionProcessor(actionType);
-    actionProcessor.process(imagePath);
+    this->actionProcessor->process(imagePath);
 }
