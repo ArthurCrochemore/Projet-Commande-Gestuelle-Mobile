@@ -5,6 +5,7 @@ class TestCameraController: public QObject {
     Q_OBJECT
 
 private slots:
-; // TODO : implement some tests
+    void processValidTest();
+    void processInvalidImageTest();
 };
 
