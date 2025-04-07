@@ -12,7 +12,6 @@ ActionProcessor::ActionProcessor(uint8_t actionType) {
  * @return : void
  */
 void ActionProcessor::process(const QString &imagePath) {
-
     auto pre = std::chrono::high_resolution_clock::now();
 
     picture_vector image = photoprocessor.process(imagePath);
@@ -23,5 +22,4 @@ void ActionProcessor::process(const QString &imagePath) {
 
     auto post = std::chrono::high_resolution_clock::now();
     qDebug() << "Action réalisée en " << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) << " ms";
-
 }

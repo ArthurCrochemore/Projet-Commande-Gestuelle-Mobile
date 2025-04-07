@@ -11,9 +11,10 @@ public:
     explicit CameraController(QObject *parent = nullptr);
 
 signals:
+    void errorOccurred(const QString &errorMessage);
 
 public slots:
-    static void takePicture(const QString &imagePath);
+    void takePicture(const QString &imagePath);
 };
 
 #endif // CAMERACONTROLLER_H
