@@ -6,17 +6,17 @@
 
 class ExecuteActionCommandVolume {
     public:
-    static void execute(uint8_t predicted);
+    static constexpr void execute(const uint8_t predicted);
 };
 
 class ExecuteActionCommandBrightness {
     public:
-    static void execute(uint8_t predicted);
+    static constexpr void execute(const uint8_t predicted);
 };
 
 class ExecuteActionCommand {
     public:
-    static void execute(uint8_t predicted, uint8_t actionType);
+    static void execute(const uint8_t predicted, const uint8_t actionType);
 };
 
 #endif // EXECUTE_ACTION_COMMAND_H

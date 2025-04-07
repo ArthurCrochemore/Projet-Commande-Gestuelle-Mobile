@@ -15,8 +15,9 @@ void QImageToVectorAdapter::vectorize(const QString &imagePath, QImage& image, p
 
     for (int y = 0; y < HEIGHT; ++y) {
         const uchar* rowData = image.scanLine(y);
+        picture_vector1D pixelRow = pixelValues[y]; // Récupération de la ligne correspondante dans le vecteur 2D
         for (int x = 0; x < WIDTH; ++x) {
-            pixelValues[y][x] = rowData[x] / 255.0f; // Normalisation des valeurs de pixel entre 0 et 1
+            pixelRow[x] = rowData[x] / 255.0f; // Normalisation de la valeur de gris
         }
     }
 }

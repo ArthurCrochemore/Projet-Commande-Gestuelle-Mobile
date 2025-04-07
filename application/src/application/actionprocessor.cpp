@@ -1,9 +1,10 @@
 #include "./actionprocessor.h"
 
-ActionProcessor::ActionProcessor(uint8_t actionType) {
+ActionProcessor::ActionProcessor(const uint8_t actionType) {
     this->actionType = actionType;
     this->image = QImage(WIDTH, HEIGHT, QImage::Format_Grayscale8); // TODO : revoir si c'est utile
     this->pixelValues = picture_vector(HEIGHT, picture_vector1D(WIDTH));
+    this->pixelRow = picture_vector1D(WIDTH);
 }
 
 /**
@@ -15,7 +16,7 @@ ActionProcessor::ActionProcessor(uint8_t actionType) {
 void ActionProcessor::process(const QString &imagePath) {
     auto pre = std::chrono::high_resolution_clock::now();
 
-    QImageToVectorAdapter::vectorize(imagePath, this->image, this->pixelValues);
+    QImageToVectorAdapter::vectorize(imagePath, this->image, this->pixelValues, this->pixelRow);
 
     uint8_t predicted = Classifier::predict(this->pixelValues, this->actionType);
 

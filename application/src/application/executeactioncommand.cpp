@@ -6,7 +6,7 @@
  * @param predicted : classification de l'image
  * @return : void
  */
-void ExecuteActionCommandVolume::execute(uint8_t predicted) {
+void constexpr ExecuteActionCommandVolume::execute(const uint8_t predicted) {
     switch(predicted) {
         case VolumeClassifier::NOTHING:
             break;
@@ -28,7 +28,7 @@ void ExecuteActionCommandVolume::execute(uint8_t predicted) {
  * @param predicted : classification de l'image
  * @return : void
  */
-void ExecuteActionCommandBrightness::execute(uint8_t predicted) {
+void constexpr ExecuteActionCommandBrightness::execute(const uint8_t predicted) {
     switch(predicted) {
         case BrightnessClassifier::NOTHING:
             break;
@@ -51,7 +51,7 @@ void ExecuteActionCommandBrightness::execute(uint8_t predicted) {
  * @param actionType : type d'action à réaliser (volume ou luminosité)
  * @return : void
  */
-void ExecuteActionCommand::execute(uint8_t predicted, uint8_t actionType) {
+void ExecuteActionCommand::execute(const uint8_t predicted, const uint8_t actionType) {
     switch(actionType) {
         case Classifier::VOLUME:
             ExecuteActionCommandVolume().execute(predicted);
