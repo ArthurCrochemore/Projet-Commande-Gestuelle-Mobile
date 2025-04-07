@@ -33,3 +33,14 @@ uint8_t BrightnessClassifier::predict(picture_vector&  features) {
 
     return BrightnessClassifier::UP;
 }
+
+uint8_t Classifier::predict(picture_vector& features, uint8_t actionType) {
+    switch(actionType) {
+        case Classifier::VOLUME:
+            return VolumeClassifier::predict(features);
+        case Classifier::BRIGHTNESS:
+            return BrightnessClassifier::predict(features);
+        default:
+            return -1; // Erreur : type d'action inconnu
+    }
+}

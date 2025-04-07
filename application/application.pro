@@ -24,7 +24,6 @@ SOURCES += \
         main.cpp \
         src/application/actionprocessor.cpp \
         src/application/executeactioncommand.cpp \
-        src/application/serviceidentify.cpp \
         src/learning/classifier.cpp \
         src/learning/imageadapter.cpp \
         src/presentation/cameracontroller.cpp \
@@ -55,7 +54,6 @@ FORMS +=
 HEADERS += \
     src/application/actionprocessor.h \
     src/application/executeactioncommand.h \
-    src/application/serviceidentify.h \
     src/learning/classifier.h \
     src/learning/imageadapter.h \
     src/presentation/cameracontroller.h

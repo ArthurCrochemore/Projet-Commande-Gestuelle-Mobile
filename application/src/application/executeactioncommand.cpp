@@ -53,10 +53,10 @@ void ExecuteActionCommandBrightness::execute(uint8_t predicted) {
  */
 void ExecuteActionCommand::execute(uint8_t predicted, uint8_t actionType) {
     switch(actionType) {
-        case ServiceIdentifyAction::VOLUME:
+        case Classifier::VOLUME:
             ExecuteActionCommandVolume().execute(predicted);
             break;
-        case ServiceIdentifyAction::BRIGHTNESS:
+        case Classifier::BRIGHTNESS:
             ExecuteActionCommandBrightness().execute(predicted);
             break;
         default:

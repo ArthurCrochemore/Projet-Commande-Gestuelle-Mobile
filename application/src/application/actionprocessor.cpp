@@ -17,7 +17,7 @@ void ActionProcessor::process(const QString &imagePath) {
 
     QImageToVectorAdapter::vectorize(imagePath, this->image, this->pixelValues);
 
-    uint8_t predicted = ServiceIdentifyAction::identify(this->pixelValues, this->actionType);
+    uint8_t predicted = Classifier::predict(this->pixelValues, this->actionType);
 
     ExecuteActionCommand::execute(predicted, this->actionType);
 

@@ -8,7 +8,7 @@
 #define ACTIONPROCESSOR_H
 
 #include "./executeactioncommand.h"
-#include "./serviceidentify.h"
+#include "../learning/classifier.h"
 #include "../learning/imageadapter.h"
 
 class ActionProcessor {
