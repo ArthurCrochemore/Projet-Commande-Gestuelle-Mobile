@@ -1,7 +1,7 @@
 #include "cameracontroller.h"
 
 CameraController::CameraController(QObject *parent,
-                                    uint8_t actionType // TODO : choix depuis l'UI
+                                    const uint8_t actionType // TODO : choix depuis l'UI
                                    ): QObject(parent) {
     actionProcessor = new ActionProcessor(actionType);
 }

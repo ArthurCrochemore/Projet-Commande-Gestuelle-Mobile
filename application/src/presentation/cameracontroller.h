@@ -4,10 +4,10 @@
 #include <QObject>
 #include "../application/actionprocessor.h"
 
-class CameraController: public QObject {
+class CameraController final : public QObject {
     Q_OBJECT
 public:
-    explicit CameraController(QObject *parent = nullptr, uint8_t actionType = Classifier::VOLUME);
+    explicit CameraController(QObject *parent = nullptr, const uint8_t actionType = Classifier::VOLUME);
     ~CameraController();
 private:
     ActionProcessor *actionProcessor = nullptr; // TODO : à supprimer ?

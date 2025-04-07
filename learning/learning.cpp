@@ -42,14 +42,14 @@ std::vector<ImageData> initialization(QString type_name, Type type) {
             QString filename = "S:\\Sherbrooke\\Semestre_2\\Projet-Commande-Gestuelle-Mobile\\learning\\database\\"
                 + type_name + "\\" + str + QString::number(i) + "_" + type_name + ".jpg"; // Chemin absolu vers les images
 
-            QImage image(filename);
+            QImage image;
+
+            ImageData data;
+            QImageToVectorAdapter::vectorize(filename, image, data.pixelValues);
             if (image.isNull()) {
                 qDebug() << "Image : " + filename + " is null";
                 return {};
             }
-
-            ImageData data;
-            data.pixelValues = QImageToVectorAdapter{}.vectorize(image);
             data.class_value = class_idx;
 
             pictures_vectorized.push_back(data);
@@ -308,7 +308,7 @@ int prediction(ModelWeights& model, ImageData image) {
     return predicted_class;
 }
 
-int main(int argc, char* argv[]) {
+int main_bis(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
     QString type_name_classified = "volume";
@@ -348,4 +348,26 @@ int main(int argc, char* argv[]) {
 	}
 
     return app.exec();
+}
+
+
+int main(int argc, char* argv[]) {
+    QString imagePath = "S:\\Sherbrooke\\Semestre_2\\Projet-Commande-Gestuelle-Mobile\\learning\\database\\volume\\up0_volume.jpg"; // Chemin absolu vers l'image
+    QImage image;
+    picture_vector pixelValues;
+    pixelValues = picture_vector(HEIGHT, picture_vector1D(WIDTH));
+
+    std::chrono::steady_clock::time_point post;
+    std::chrono::steady_clock::time_point pre;
+
+    for (int i = 0; i < 5; i++) {
+        pre = std::chrono::high_resolution_clock::now();
+
+        QImageToVectorAdapter::vectorize(imagePath, image, pixelValues);
+
+        post = std::chrono::high_resolution_clock::now();
+        qDebug() << "Vectorisation terminée en " << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) << " ms";
+    }
+
+    return 0;
 }

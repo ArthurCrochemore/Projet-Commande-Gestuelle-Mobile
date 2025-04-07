@@ -16,9 +16,10 @@ private:
     uint8_t actionType;
     QImage image;
     picture_vector pixelValues;
+    picture_vector1D pixelRow;
 
 public:
-    ActionProcessor(uint8_t actionType);
+    explicit ActionProcessor(const uint8_t actionType); // Added explicit
     void process(const QString &imagePath);
 };
 

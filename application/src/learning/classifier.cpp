@@ -15,7 +15,7 @@ const uint8_t VolumeClassifier::DOWN;
  * @param features : image vectorisée
  * @return : classe prédite
  */
-uint8_t VolumeClassifier::predict(picture_vector& features) {
+uint8_t VolumeClassifier::predict(const picture_vector& features) {
     // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour le volume
 
     return VolumeClassifier::UP;
@@ -28,13 +28,13 @@ uint8_t VolumeClassifier::predict(picture_vector& features) {
  * @param features : image vectorisée
  * @return : classe prédite
  */
-uint8_t BrightnessClassifier::predict(picture_vector&  features) {
+uint8_t BrightnessClassifier::predict(const picture_vector&  features) {
     // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour la luminosité
 
     return BrightnessClassifier::UP;
 }
 
-uint8_t Classifier::predict(picture_vector& features, uint8_t actionType) {
+uint8_t Classifier::predict(const picture_vector& features, const uint8_t actionType) {
     switch(actionType) {
         case Classifier::VOLUME:
             return VolumeClassifier::predict(features);
