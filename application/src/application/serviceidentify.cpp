@@ -30,8 +30,12 @@ uint8_t ServiceIdentifyActionBrightness::identify(picture_vector& features) {
  */
 IServiceIdentifyAction* IdentifyActionFactory::createIdentifyAction(uint8_t actionType) {
     switch (actionType) {
-        case IdentifyActionFactory::VOLUME: return new ServiceIdentifyActionVolume();
-        case IdentifyActionFactory::BRIGHTNESS: return new ServiceIdentifyActionBrightness();
-        default: return nullptr;
+        case IdentifyActionFactory::VOLUME: 
+            return new ServiceIdentifyActionVolume();
+        case IdentifyActionFactory::BRIGHTNESS: 
+            return new ServiceIdentifyActionBrightness();
+        default: 
+            throw std::invalid_argument("Type d'action inconnu : " + std::to_string(actionType));
+            return nullptr;
     }
 }

@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/application/photoprocessor.h"
 
 class TestPhotoProcessor: public QObject {

@@ -1,7 +1,7 @@
 #include <QTest>
 
-#include "unit/tst_actionprocessor.h"
-#include "unit/tst_cameracontroller.h"
+#include "integration/tst_actionprocessor.h"
+#include "integration/tst_cameracontroller.h"
 #include "unit/tst_classifier.h"
 #include "unit/tst_executeactioncommand.h"
 #include "unit/tst_imageadapter.h"

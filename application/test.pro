@@ -29,8 +29,8 @@ SOURCES += \
     src/presentation/cameracontroller.cpp \
     src/presentation/mainwindow.cpp \
     test/test.cpp \
-    test/unit/tst_actionprocessor.cpp \
-    test/unit/tst_cameracontroller.cpp \
+    test/integration/tst_actionprocessor.cpp \
+    test/integration/tst_cameracontroller.cpp \
     test/unit/tst_classifier.cpp \
     test/unit/tst_executeactioncommand.cpp \
     test/unit/tst_imageadapter.cpp \
@@ -67,8 +67,8 @@ HEADERS += \
     src/learning/imageadapter.h \
     src/learning/preprocessingdecorator.h \
     src/presentation/cameracontroller.h \
-    test/unit/tst_actionprocessor.h \
-    test/unit/tst_cameracontroller.h \
+    test/integration/tst_actionprocessor.h \
+    test/integration/tst_cameracontroller.h \
     test/unit/tst_classifier.h \
     test/unit/tst_executeactioncommand.h \
     test/unit/tst_imageadapter.h \
