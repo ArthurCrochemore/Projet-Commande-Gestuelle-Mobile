@@ -8,6 +8,8 @@ Ce projet étant réalisé dans le cadre de deux cours distincts, il existe deux
 - **Cours IFT785-51** : L'objectif principal est l'assurance qualité, avec une structure orientée objet refactorisée, l'intégration de divers design patterns et des tests. Le traitement des images se fait par capture photo. Cette version est disponible dans les branches `main` et `oriente-objet`.  
 - **Cours IFT729-51** : L'objectif est une approche en temps réel, avec un code optimisé et une captation d'images en continu. Cette version est disponible dans la branche `temps-reel`.  
 
+**Cette branche est utilisée afin de finir de développer la solution d'apprentissage de sorte à pouvoir ensuite l'implémenter par la suite dans les deux autres versions.**
+
 ## **Fonctionnalités principales**
 L'application repose sur l'utilisation de la caméra comme capteur pour la reconnaissance des gestes manuels et leur association à des actions définies.  
 - Entraînement d'un modèle capable de reconnaître différents gestes et de les associer à des actions précises.  
