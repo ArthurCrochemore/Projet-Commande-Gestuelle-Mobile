@@ -1,18 +1,18 @@
 #include "custom_conv.h"
 
-std::vector<std::vector<std::vector<greyscale_value>>> CustomConv::apply_convolution(
-    const std::vector<std::vector<std::vector<greyscale_value>>>& inputs,
-    const std::vector<std::vector<std::vector<std::vector<greyscale_value>>>>& weights,
-    const std::vector<greyscale_value>& biases,
+std::vector<picture_vector> CustomConv::apply_convolution(
+    const std::vector<picture_vector>& inputs, // 3 dimensions : n feature_maps
+	const weight_tensor& weights, // 4 dimensions : n filters, n channels, kernel height, kernel width
+    const tensor_1D& biases,
     int input_width, int input_height, int input_channels, int kernel_size) {
 
     int output_width = input_width - kernel_size + 1;
     int output_height = input_height - kernel_size + 1;
-    int num_filters = weights.size();
+    int num_filters = weights.size(); // Nombres de channels de sortie 
 
     // Initialise une matrice 3D pour stocker les r�sultats
-    std::vector<std::vector<std::vector<greyscale_value>>> output(
-        num_filters, std::vector<std::vector<greyscale_value>>(output_height, std::vector<greyscale_value>(output_width, 0))
+    std::vector<picture_vector> output(
+        num_filters, picture_vector(output_height, picture_vector1D(output_width, 0))
     );
 
     // Applique la convolution sur chaque filtre
@@ -45,11 +45,11 @@ std::vector<std::vector<std::vector<greyscale_value>>> CustomConv::apply_convolu
 }
 
 void CustomConv::apply_batch_norm(
-    std::vector<std::vector<std::vector<greyscale_value>>>& feature_maps,
-    const std::vector<greyscale_value>& bn_weight,
-    const std::vector<greyscale_value>& bn_bias,
-    const std::vector<greyscale_value>& bn_running_mean,
-    const std::vector<greyscale_value>& bn_running_var) {
+    std::vector<picture_vector>& feature_maps,
+    const tensor_1D& bn_weight,
+    const tensor_1D& bn_bias,
+    const tensor_1D& bn_running_mean,
+    const tensor_1D& bn_running_var) {
 
     int num_filters = feature_maps.size();
     int height = feature_maps[0].size();
@@ -66,7 +66,7 @@ void CustomConv::apply_batch_norm(
     }
 }
 
-void CustomConv::apply_relu(std::vector<std::vector<std::vector<greyscale_value>>>& feature_maps) {
+void CustomConv::apply_relu(std::vector<picture_vector>& feature_maps) {
     int num_filters = feature_maps.size();
     int height = feature_maps[0].size();
     int width = feature_maps[0][0].size();
@@ -80,10 +80,10 @@ void CustomConv::apply_relu(std::vector<std::vector<std::vector<greyscale_value>
     }
 }
 
-std::vector<greyscale_value> CustomConv::flatten(
-    const std::vector<std::vector<std::vector<greyscale_value>>>& feature_maps) {
+tensor_1D CustomConv::flatten(
+    const std::vector<picture_vector>& feature_maps) {
 
-    std::vector<greyscale_value> flat_vector;
+    tensor_1D flat_vector;
 
     for (const auto& channel : feature_maps) {
         for (const auto& row : channel) {
@@ -93,10 +93,10 @@ std::vector<greyscale_value> CustomConv::flatten(
     return flat_vector;
 }
 
-std::vector<greyscale_value> CustomConv::apply_fully_connected(
-    const std::vector<greyscale_value>& input,
-    const std::vector<std::vector<greyscale_value>>& weights,
-    const std::vector<greyscale_value>& biases) {
+tensor_1D CustomConv::apply_fully_connected(
+    const tensor_1D& input,
+    const tensor_2D& weights,
+    const tensor_1D& biases) {
 
     int output_size = biases.size();
     int input_size = input.size();
@@ -114,7 +114,7 @@ std::vector<greyscale_value> CustomConv::apply_fully_connected(
         }
     }
 
-    std::vector<greyscale_value> output(output_size, 0);
+    tensor_1D output(output_size, 0);
 
     for (int i = 0; i < output_size; ++i) {
         greyscale_value sum = biases[i];
