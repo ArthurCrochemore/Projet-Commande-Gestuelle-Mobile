@@ -49,6 +49,10 @@ public:
 
     static void apply_relu(std::vector<picture_vector>& feature_maps);
 
+    static void apply_max_pooling_2D(std::vector<picture_vector>& feature_maps, int param = 2, int stride = 2);
+
+    static void apply_adaptive_avg_pool(std::vector<picture_vector>& feature_maps, int new_width, int new_height);
+
     static tensor_1D flatten(const std::vector<picture_vector>& feature_maps);
 
     static tensor_1D apply_fully_connected(
