@@ -12,14 +12,15 @@
 
 #define NUM_CLASSES 3
 
-#define FILTERS_LAYER1 16
-#define FILTERS_LAYER2 32
-#define FILTERS_LAYER3 64
+#define FILTERS_LAYER1 8
+#define FILTERS_LAYER2 16
+#define FILTERS_LAYER3 32
 
 #define KERNEL_SIZE 3
 #define BATCH_SIZE 8
-#define NUM_EPOCH 10
+#define NUM_EPOCH 1
 #define INPUT_CHANNELS 1
+#define ADAPTIVE_POOL_WIDTH 2
 
 class ConvNetImpl : public torch::nn::Module {
  public:
@@ -48,7 +49,7 @@ class ConvNetImpl : public torch::nn::Module {
         torch::nn::ReLU(),
     };
 
-    torch::nn::AdaptiveAvgPool2d pool{torch::nn::AdaptiveAvgPool2dOptions({4, 4})};
+    torch::nn::AdaptiveAvgPool2d pool{torch::nn::AdaptiveAvgPool2dOptions({ADAPTIVE_POOL_WIDTH, ADAPTIVE_POOL_WIDTH})};
 
     torch::nn::Linear fc;
 };
