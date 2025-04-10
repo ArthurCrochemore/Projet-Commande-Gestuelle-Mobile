@@ -6,8 +6,8 @@
 #define IMAGEADAPTER_H
 
 // Variables globales pour les dimensions des images
-constexpr int WIDTH = 300;
-constexpr int HEIGHT = 400;
+constexpr int WIDTH = 150;
+constexpr int HEIGHT = 200;
 
 // Variable pour le type de valeur de gris
 #define greyscale_value float

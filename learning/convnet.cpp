@@ -70,7 +70,7 @@ ModelWeights ConvNetImpl::extract_weights() {
 }
 
 ConvNetImpl::ConvNetImpl(int64_t num_classes)
-    : fc(64 * 4 * 4, num_classes) {
+    : fc(FILTERS_LAYER3* ADAPTIVE_POOL_WIDTH* ADAPTIVE_POOL_WIDTH, num_classes) {
     register_module("layer1", layer1);
     register_module("layer2", layer2);
     register_module("layer3", layer3);
@@ -83,6 +83,6 @@ torch::Tensor ConvNetImpl::forward(torch::Tensor x) {
     x = layer2->forward(x);
     x = layer3->forward(x);
     x = pool->forward(x);
-    x = x.view({-1,  64 * 4 * 4});
+    x = x.view({ -1, FILTERS_LAYER3 * ADAPTIVE_POOL_WIDTH * ADAPTIVE_POOL_WIDTH });
     return fc->forward(x);
 }
