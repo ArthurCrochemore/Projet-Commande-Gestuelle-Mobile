@@ -1,4 +1,4 @@
-// Basé sur le projet pytorch-cpp (https://github.com/prabhuomkar/pytorch-cpp/tree/master)
+// Basï¿½ sur le projet pytorch-cpp (https://github.com/prabhuomkar/pytorch-cpp/tree/master)
 // Copyright (c) 2020-present, pytorch-cpp Authors
 // Sous licence MIT
 #pragma once
@@ -7,7 +7,7 @@
 #define COVNET_H
 
 #include <torch/torch.h>
-#include "custom_conv.h"
+#include "cnn_forward.h"
 #include "../application/src/learning/imageadapter.h"
 
 #define NUM_CLASSES 3
@@ -30,7 +30,7 @@ class ConvNetImpl : public torch::nn::Module {
 
  private:
     torch::nn::Sequential layer1{
-		torch::nn::Conv2d(torch::nn::Conv2dOptions(INPUT_CHANNELS, FILTERS_LAYER1, KERNEL_SIZE).stride(1)), // Modifié à un canal pour les images en noir et blanc
+		torch::nn::Conv2d(torch::nn::Conv2dOptions(INPUT_CHANNELS, FILTERS_LAYER1, KERNEL_SIZE).stride(1)), // Modifiï¿½ ï¿½ un canal pour les images en noir et blanc
         torch::nn::BatchNorm2d(FILTERS_LAYER1),
         torch::nn::ReLU(),
         torch::nn::MaxPool2d(torch::nn::MaxPool2dOptions(2).stride(2))
