@@ -18,7 +18,7 @@ struct Type {
 };
 
 std::unordered_map<QString, Type> types = {
-    {"volume", {{"null", "down", "up"}, 3, 10}} // Dimensions des images : 3000 x 4000
+    {"volume", {{"null", "down", "up"}, 3, 100}} // Dimensions des images : 3000 x 4000
     // ajouter d'autres types ici ...
 };
 
@@ -62,7 +62,8 @@ std::vector<ImageData> initialization(QString type_name, Type type) {
             }
 
             ImageData data;
-            data.pixelValues = QImageToVectorAdapter{}.vectorize(image);
+			data.pixelValues.resize(HEIGHT, picture_vector1D(WIDTH));
+            QImageToVectorAdapter::vectorize(filename, image, data.pixelValues, picture_vector1D{}); // Corrected call to vectorize
             data.class_value = class_idx;
 
             pictures_vectorized.push_back(data);
@@ -73,7 +74,7 @@ std::vector<ImageData> initialization(QString type_name, Type type) {
     return pictures_vectorized;
 }
 
-int main_bis(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
     QString type_name_classified = "volume";
@@ -97,7 +98,7 @@ int main_bis(int argc, char* argv[]) {
     const int num_conv_layers = 3;
     const std::vector<int> conv_layers_filters = {8, 16, 32};
     const int kernel_size = 3;
-    const int num_train = 24; // Nb d'images en entrainement
+    const int num_train = 240; // Nb d'images en entrainement
 
     CNNModel model(num_conv_layers, conv_layers_filters, kernel_size, num_train);
 
@@ -127,27 +128,7 @@ int main_bis(int argc, char* argv[]) {
         qDebug() << "Classe " << class_tuple.first << " prédites " << class_tuple.second << " fois";
     }
 
+    model.extract_weights(type_name_classified);
+
     return app.exec();
-}
-
-
-int main(int argc, char* argv[]) {
-    QString imagePath = "S:\\Sherbrooke\\Semestre_2\\Projet-Commande-Gestuelle-Mobile\\learning\\database\\volume\\up0_volume.jpg"; // Chemin absolu vers l'image
-    QImage image;
-    picture_vector pixelValues;
-    pixelValues = picture_vector(HEIGHT, picture_vector1D(WIDTH));
-
-    std::chrono::steady_clock::time_point post;
-    std::chrono::steady_clock::time_point pre;
-
-    for (int i = 0; i < 5; i++) {
-        pre = std::chrono::high_resolution_clock::now();
-
-        QImageToVectorAdapter::vectorize(imagePath, image, pixelValues);
-
-        post = std::chrono::high_resolution_clock::now();
-        qDebug() << "Vectorisation terminée en " << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) << " ms";
-    }
-
-    return 0;
 }
