@@ -1,4 +1,6 @@
 #include <random>
+#include <fstream>
+#include <QDir>
 
 #ifndef CNNMODEL_H
 #define CNNMODEL_H
@@ -59,6 +61,9 @@ public:
         const double learning_rate = 1e-3, const double weight_decay = 1e-3);
 
     int predict(const ImageData& input_image);
+
+    void extract_weights(const QString& type_name_classified);
+	void load_weights(const std::string& type_name_classified);
 };
 
 #endif // CNNMODEL_H
