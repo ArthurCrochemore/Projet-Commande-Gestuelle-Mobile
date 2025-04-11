@@ -1,4 +1,5 @@
 #include "classifier.h"
+#include "../../../learning/cnn_model.h"
 
 const uint8_t BrightnessClassifier::NOTHING;
 const uint8_t BrightnessClassifier::UP;
@@ -8,6 +9,7 @@ const uint8_t VolumeClassifier::NOTHING;
 const uint8_t VolumeClassifier::UP;
 const uint8_t VolumeClassifier::DOWN;
 
+static CNNModel model(3, {8, 16, 32}, 3, 240);
 
 /**
  * Fonction réalisant la classification d'une image pour le contrôle du volume
@@ -15,32 +17,31 @@ const uint8_t VolumeClassifier::DOWN;
  * @param features : image vectorisée
  * @return : classe prédite
  */
-uint8_t VolumeClassifier::predict(const picture_vector& features) {
-    // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour le volume
+void Classifier::initialize(QString type_name_classified) {
+    QString path = QDir::cleanPath(QDir(QDir::currentPath()).absoluteFilePath("../database/"));
+    std::string absolute_path = path.toStdString() + type_name_classified;
+    std::string weights_file = absolute_path + type_name_classified + "_weights.bin";
 
-    return VolumeClassifier::UP;
+    cnnModel.load_weights(weights_file);
 }
-
 
 /**
- * Fonction réalisant la classification d'une image pour le contrôle de la luminosité
+ * Fonction réalisant la classification d'une image pour le contrôle du volume
  * 
  * @param features : image vectorisée
+ * @param actionType : type d'action (volume ou luminosité)
  * @return : classe prédite
  */
-uint8_t BrightnessClassifier::predict(const picture_vector&  features) {
-    // TODO : Implémentation du modèle de prédiction entrainé pour interpréter des signes pour la luminosité
-
-    return BrightnessClassifier::UP;
-}
-
 uint8_t Classifier::predict(const picture_vector& features, const uint8_t actionType) {
     switch(actionType) {
         case Classifier::VOLUME:
-            return VolumeClassifier::predict(features);
+            this.initialize("volume");
+            break;
         case Classifier::BRIGHTNESS:
-            return BrightnessClassifier::predict(features);
+            this.initialize("brightness");
+            break;
         default:
             return -1; // Erreur : type d'action inconnu
     }
+    return cnnModel.predict(features);
 }
