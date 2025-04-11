@@ -16,7 +16,7 @@ constexpr int HEIGHT = 200;
 
 class QImageToVectorAdapter {
     public:
-    static void vectorize(const QString &imagePath, QImage& image, picture_vector& pixelValues, picture_vector1D& pixelRow);
+        static void vectorize(const QString& imagePath, QImage& image, picture_vector& pixelValues, picture_vector1D& pixelRow);
 };
 
 #endif // IMAGEADAPTER_H

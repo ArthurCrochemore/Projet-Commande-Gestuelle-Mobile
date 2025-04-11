@@ -6,7 +6,7 @@
  * @param image : image à vectoriser
  * @return : image vectorisée
  */
-void QImageToVectorAdapter::vectorize(const QString &imagePath, QImage& image, picture_vector& pixelValues) {
+void QImageToVectorAdapter::vectorize(const QString &imagePath, QImage& image, picture_vector& pixelValues, picture_vector1D& pixelRow) {
     image = QImage(imagePath).scaled(WIDTH, HEIGHT, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     if (image.format() != QImage::Format_Grayscale8) {
