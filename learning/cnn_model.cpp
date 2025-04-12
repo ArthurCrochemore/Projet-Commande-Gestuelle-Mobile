@@ -312,9 +312,97 @@ int CNNModel::predict(const ImageData& input_image) {
     int predicted_class = std::distance(predictions[0].begin(), std::max_element(predictions[0].begin(), predictions[0].end()));
 
     auto post = std::chrono::high_resolution_clock::now();
-    qDebug() << "Durée pour la prédiction: " 
-             << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) 
+    std::cout << "Durée pour la prédiction: " 
+             << std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count() 
              << " ms";
 
     return predicted_class;
+}
+
+/**
+ * Extrait les poids du modèle CNN et les sauvegarde dans un fichier
+ * 
+ * @param type_name_classified : nom du type de classification (ex: "volume", "brightness")
+ */
+void CNNModel::extract_weights(const QString& type_name_classified) {
+    QString path = QDir::cleanPath(QDir(QDir::currentPath()).absoluteFilePath("../database/" + type_name_classified));
+    std::string absolute_path = path.toStdString();
+    std::string weights_file = absolute_path + type_name_classified.toStdString() + "_weights.bin";
+
+    std::ofstream file(weights_file, std::ios::binary);
+    if (!file.is_open()) {
+        throw std::runtime_error("Impossible d'écrire dans: " + weights_file);
+    }
+
+    for (const auto& layer_weights : conv_weights) {
+        for (const auto& filter_weights : layer_weights) {
+            for (const auto& channel_weights : filter_weights) {
+                for (const auto& row : channel_weights) {
+                    file.write(reinterpret_cast<const char*>(row.data()), row.size() * sizeof(float));
+                }
+            }
+        }
+    }
+    for (const auto& layer_biases : conv_biases) {
+        file.write(reinterpret_cast<const char*>(layer_biases.data()), layer_biases.size() * sizeof(float));
+    }
+
+    for (const auto& layer_weights : bn_weights) {
+        file.write(reinterpret_cast<const char*>(layer_weights.data()), layer_weights.size() * sizeof(float));
+    }
+    for (const auto& layer_biases : bn_biases) {
+        file.write(reinterpret_cast<const char*>(layer_biases.data()), layer_biases.size() * sizeof(float));
+    }
+
+    for (const auto& class_weights : fc_weights) {
+        file.write(reinterpret_cast<const char*>(class_weights.data()), class_weights.size() * sizeof(float));
+    }
+    file.write(reinterpret_cast<const char*>(fc_biases.data()), fc_biases.size() * sizeof(float));
+
+    file.close();
+    std::cout << "Poids extraits à: " << weights_file << std::endl;
+}
+
+/**
+ * Charge les poids pré-entraînés dans le modèle CNN
+ * 
+ * @param type_name_classified : nom du type de classification (ex: "volume", "brightness")
+ */
+void CNNModel::load_weights(const std::string& type_name_classified) {
+    QString path = QDir::cleanPath(QDir(QDir::currentPath()).absoluteFilePath("../database/"));
+    std::string absolute_path = path.toStdString() + type_name_classified;
+    std::string weights_file = absolute_path + type_name_classified + "_weights.bin";
+
+    std::ifstream file(weights_file, std::ios::binary);
+    if (!file.is_open()) {
+        throw std::runtime_error("Impossible de charger à partir de: " + weights_file);
+    }
+
+    for (auto& layer_weights : conv_weights) {
+        for (auto& filter_weights : layer_weights) {
+            for (auto& channel_weights : filter_weights) {
+                for (auto& row : channel_weights) {
+                    file.read(reinterpret_cast<char*>(row.data()), row.size() * sizeof(float));
+                }
+            }
+        }
+    }
+    for (auto& layer_biases : conv_biases) {
+        file.read(reinterpret_cast<char*>(layer_biases.data()), layer_biases.size() * sizeof(float));
+    }
+
+    for (auto& layer_weights : bn_weights) {
+        file.read(reinterpret_cast<char*>(layer_weights.data()), layer_weights.size() * sizeof(float));
+    }
+    for (auto& layer_biases : bn_biases) {
+        file.read(reinterpret_cast<char*>(layer_biases.data()), layer_biases.size() * sizeof(float));
+    }
+
+    for (auto& class_weights : fc_weights) {
+        file.read(reinterpret_cast<char*>(class_weights.data()), class_weights.size() * sizeof(float));
+    }
+    file.read(reinterpret_cast<char*>(fc_biases.data()), fc_biases.size() * sizeof(float));
+
+    file.close();
+    std::cout << "Poids chargés depuis: " << weights_file << std::endl;
 }
