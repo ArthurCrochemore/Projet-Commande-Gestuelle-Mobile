@@ -18,7 +18,7 @@ struct Type {
 };
 
 std::unordered_map<QString, Type> types = {
-    {"volume", {{"null", "down", "up"}, 3, 10}} // Dimensions des images : 3000 x 4000
+    {"volume", {{"null", "down", "up"}, 3, 100}} // Dimensions des images : 3000 x 4000
     // ajouter d'autres types ici ...
 };
 
@@ -62,7 +62,8 @@ std::vector<ImageData> initialization(QString type_name, Type type) {
             }
 
             ImageData data;
-            data.pixelValues = QImageToVectorAdapter{}.vectorize(image);
+			data.pixelValues.resize(HEIGHT, picture_vector1D(WIDTH));
+            QImageToVectorAdapter::vectorize(filename, image, data.pixelValues, picture_vector1D{}); // Corrected call to vectorize
             data.class_value = class_idx;
 
             pictures_vectorized.push_back(data);
@@ -97,7 +98,7 @@ int main(int argc, char* argv[]) {
     const int num_conv_layers = 3;
     const std::vector<int> conv_layers_filters = {8, 16, 32};
     const int kernel_size = 3;
-    const int num_train = 24; // Nb d'images en entrainement
+    const int num_train = 240; // Nb d'images en entrainement
 
     CNNModel model(num_conv_layers, conv_layers_filters, kernel_size, num_train);
 
@@ -126,6 +127,8 @@ int main(int argc, char* argv[]) {
     for (const auto& class_tuple : predicted_classes) {
         qDebug() << "Classe " << class_tuple.first << " prédites " << class_tuple.second << " fois";
     }
+
+    model.extract_weights(type_name_classified);
 
     return app.exec();
 }
