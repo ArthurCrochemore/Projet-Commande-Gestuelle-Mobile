@@ -4,9 +4,13 @@
 #define CLASSIFIER_H
 
 #include "../learning/imageadapter.h"
+#include "../../../learning/cnn_model.h"
 
 class IClassifier {
+private:
+    CNNModel cnnModel;
 public:
+    initialize(QString type_name_classified);
     virtual uint8_t predict(picture_vector& features) = 0;
 };
 
