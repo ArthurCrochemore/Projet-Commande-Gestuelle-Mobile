@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
     std::unordered_map<int, int> predicted_classes{{0, 0}, {1, 0}, {2, 0}};
     for (int i = 0; i < 300; i += 20) {
         const auto& data = pictures_vectorized[i];
-        int predicted_class = model.predict(data);
+        int predicted_class = model.predict(data.pixelValues);
         qDebug() << "Classe prédite : " << predicted_class << " vs Vraie classe : " << data.class_value;
         predicted_classes[predicted_class]++;
     }
