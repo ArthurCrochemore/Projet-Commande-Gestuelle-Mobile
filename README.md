@@ -6,7 +6,9 @@ Cette application mobile en C++ utilise le framework Qt et la caméra du disposi
 ## Versionnage
 Ce projet étant réalisé dans le cadre de deux cours distincts, il existe deux versions :  
 - **Cours IFT785-51** : L'objectif principal est l’assurance qualité et l’architecture orientée objet. Cette version est disponible dans la branche `oriente-objet`.  
-- **Cours IFT729-51** : L’objectif est une approche **temps réel**, avec une architecture logicielle réduite, un traitement continu des images et une optimisation pour la réactivité. Cette version correspond à la branche actuelle : `temps-reel`.
+- **Cours IFT729-51** : L’objectif est une approche **temps réel**, avec une architecture logicielle réduite, un traitement continu des images et une optimisation pour la réactivité.
+
+**Cette branche est utilisée afin de finir de développer la solution d'apprentissage de sorte à pouvoir ensuite l'implémenter par la suite dans les deux autres versions.**
 
 ## **Fonctionnalités principales**
 L'application repose sur l'utilisation de la caméra comme capteur pour la reconnaissance des gestes manuels et leur association à des actions définies.  
