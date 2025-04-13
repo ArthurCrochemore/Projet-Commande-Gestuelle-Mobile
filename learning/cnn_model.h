@@ -60,7 +60,7 @@ public:
         const int64_t batch_size, const size_t num_epochs,
         const double learning_rate = 1e-3, const double weight_decay = 1e-3);
 
-    int predict(const ImageData& input_image);
+    int predict(const picture_vector& input_image);
 
     void extract_weights(const QString& type_name_classified);
 	void load_weights(const std::string& type_name_classified);

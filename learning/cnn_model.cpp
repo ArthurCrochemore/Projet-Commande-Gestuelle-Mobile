@@ -301,10 +301,10 @@ void CNNModel::learn(const std::vector<ImageData>& inputs, const int64_t num_cla
  * @param input_image : image à prédire
  * @return : classe prédite
  */
-int CNNModel::predict(const ImageData& input_image) {
+int CNNModel::predict(const picture_vector& input_image) {
     auto pre = std::chrono::high_resolution_clock::now();
 
-    std::vector<std::vector<picture_vector>> input_batch = {{input_image.pixelValues}};
+    std::vector<std::vector<picture_vector>> input_batch = {{input_image}};
 
     std::vector<std::vector<std::vector<picture_vector>>> all_feature_maps_batch;
     tensor_2D predictions = forward(input_batch, all_feature_maps_batch);
