@@ -19,10 +19,10 @@ static CNNModel model(3, {8, 16, 32}, 3, 240);
  */
 void Classifier::initialize(QString type_name_classified) {
     QString path = QDir::cleanPath(QDir(QDir::currentPath()).absoluteFilePath("../database/"));
-    std::string absolute_path = path.toStdString() + type_name_classified;
-    std::string weights_file = absolute_path + type_name_classified + "_weights.bin";
+    std::string absolute_path = path.toStdString() + type_name_classified.toStdString();
+    std::string weights_file = absolute_path + type_name_classified.toStdString() + "_weights.bin";
 
-    cnnModel.load_weights(weights_file);
+    model.load_weights(weights_file);
 }
 
 /**
@@ -35,13 +35,13 @@ void Classifier::initialize(QString type_name_classified) {
 uint8_t Classifier::predict(const picture_vector& features, const uint8_t actionType) {
     switch(actionType) {
         case Classifier::VOLUME:
-            this.initialize("volume");
+            Classifier::initialize("volume");
             break;
         case Classifier::BRIGHTNESS:
-            this.initialize("brightness");
+            Classifier::initialize("brightness");
             break;
         default:
             return -1; // Erreur : type d'action inconnu
     }
-    return cnnModel.predict(features);
+    return model.predict(features);
 }

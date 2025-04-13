@@ -4,6 +4,7 @@
 #define CLASSIFIER_H
 
 #include "../learning/imageadapter.h"
+#include "../../../learning/cnn_model.h"
 
 class VolumeClassifier {
 public:
