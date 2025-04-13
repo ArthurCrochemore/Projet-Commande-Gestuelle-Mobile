@@ -8,20 +8,8 @@ const uint8_t VolumeClassifier::NOTHING;
 const uint8_t VolumeClassifier::UP;
 const uint8_t VolumeClassifier::DOWN;
 
-static CNNModel model(3, {8, 16, 32}, 3, 240);
-
-/**
- * Fonction réalisant la classification d'une image pour le contrôle du volume
- * 
- * @param features : image vectorisée
- * @return : classe prédite
- */
-void Classifier::initialize(QString type_name_classified) {
-    QString path = QDir::cleanPath(QDir(QDir::currentPath()).absoluteFilePath("../database/"));
-    std::string absolute_path = path.toStdString() + type_name_classified;
-    std::string weights_file = absolute_path + type_name_classified + "_weights.bin";
-
-    cnnModel.load_weights(weights_file);
+IClassifier::IClassifier() {
+    cnnModel = new CNNModel(3, {8, 16, 32}, 3, 240);
 }
 
 /**
@@ -30,12 +18,12 @@ void Classifier::initialize(QString type_name_classified) {
  * @param features : image vectorisée
  * @return : classe prédite
  */
-void Classifier::initialize(QString type_name_classified) {
+void IClassifier::initialize(QString type_name_classified) {
     QString path = QDir::cleanPath(QDir(QDir::currentPath()).absoluteFilePath("../database/"));
-    std::string absolute_path = path.toStdString() + type_name_classified;
-    std::string weights_file = absolute_path + type_name_classified + "_weights.bin";
+    std::string absolute_path = path.toStdString() + type_name_classified.toStdString();
+    std::string weights_file = absolute_path + type_name_classified.toStdString() + "_weights.bin";
 
-    cnnModel.load_weights(weights_file);
+    cnnModel->load_weights(weights_file);
 }
 
 /**

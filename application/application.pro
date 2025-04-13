@@ -21,6 +21,9 @@ QT += quick \
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        ../learning/cnn_backward.cpp \
+        ../learning/cnn_forward.cpp \
+        ../learning/cnn_model.cpp \
         main.cpp \
         src/application/actionprocessor.cpp \
         src/application/executeactioncommand.cpp \
@@ -56,6 +59,10 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 FORMS +=
 
 HEADERS += \
+    ../learning/cnn_backward.h \
+    ../learning/cnn_forward.h \
+    ../learning/cnn_model.h \
+    ../learning/cnn_structures.h \
     src/application/actionprocessor.h \
     src/application/executeactioncommand.h \
     src/application/photoprocessor.h \

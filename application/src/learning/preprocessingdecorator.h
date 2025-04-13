@@ -6,8 +6,8 @@
 #define PREPROCESSINGDECORATOR_H
 
 // Variables globales pour les dimensions des images
-#define WIDTH 300
-#define HEIGHT 400
+#define WIDTH 150
+#define HEIGHT 200
 
 // Variable pour le type de valeur de gris
 #define greyscale_value float

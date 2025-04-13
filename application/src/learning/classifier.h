@@ -8,9 +8,10 @@
 
 class IClassifier {
 private:
-    CNNModel cnnModel;
+    CNNModel* cnnModel;
 public:
-    initialize(QString type_name_classified);
+    IClassifier();
+    void initialize(QString type_name_classified);
     virtual uint8_t predict(picture_vector& features) = 0;
 };
 
