@@ -8,6 +8,7 @@ private:
     picture_vector data;
 
 private slots:
-    void processTest();
+    void processValidTest();
+    void processWrongPathTest();
 };
 

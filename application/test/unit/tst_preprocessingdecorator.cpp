@@ -7,7 +7,7 @@ void TestPreprocessingDecorator::initTestCase() {
     this->data = data;
 }
 
-void TestPreprocessingDecorator::processTest() {
+void TestPreprocessingDecorator::normalizationTest() {
     picture_vector dataCpy = this->data;
     NormalizationPreprocessor().process(dataCpy);
     for (int i = 0; i < data.size(); ++i) {
@@ -16,6 +16,3 @@ void TestPreprocessingDecorator::processTest() {
         QCOMPARE(dataCpy[i].at(2), this->data[i].at(2)/255.0f);
     }
 }
-
-
-

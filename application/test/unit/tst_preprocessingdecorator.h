@@ -8,6 +8,6 @@ private:
 
 private slots:
     void initTestCase();
-    void processTest();
+    void normalizationTest();
 };
 
