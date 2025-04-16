@@ -1,3 +1,5 @@
+#include <cmath>
+#include <iostream>
 #include <vector>
 
 #ifndef CNN_STRUCTURES_H

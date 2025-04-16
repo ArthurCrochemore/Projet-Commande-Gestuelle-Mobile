@@ -1,5 +1,3 @@
-#include <iostream>
-
 #ifndef CNN_FORWARD_H
 #define CNN_FORWARD_H
 
