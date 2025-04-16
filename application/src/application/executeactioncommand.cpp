@@ -54,9 +54,9 @@ void ExecuteActionCommandBrightness::execute(uint8_t predicted) const {
 
 IExecuteActionCommand* ExecuteActionCommandFactory::createAction(uint8_t actionType) {
     switch (actionType) {
-        case IdentifyActionFactory::VOLUME: 
+        case IServiceIdentifyAction::VOLUME: 
             return new ExecuteActionCommandVolume();
-        case IdentifyActionFactory::BRIGHTNESS: 
+        case IServiceIdentifyAction::BRIGHTNESS: 
             return new ExecuteActionCommandBrightness();
         default: 
             throw std::invalid_argument("Type d'action inconnu : " + std::to_string(actionType));

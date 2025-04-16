@@ -1,25 +1,37 @@
 #include "./actionprocessor.h"
 
 ActionProcessor::ActionProcessor(uint8_t actionType) {
-    serviceIdentification = IdentifyActionFactory::createIdentifyAction(actionType);
-    action = ExecuteActionCommandFactory::createAction(actionType);
+    auto& provider = IdentifyActionProvider::instance();
+    serviceIdentification = provider.createIdentifyAction(actionType);
+    action = std::unique_ptr<IExecuteActionCommand>(ExecuteActionCommandFactory::createAction(actionType)); // Conversion explicite en std::unique_ptr
 }
 
 /**
  * Fonction principale faisant le lien entre le traitement de l'image et l'exécution de l'action
  * 
  * @param imagePath : chemin de l'image à traiter
- * @return : void
+ * @return : int
  */
-void ActionProcessor::process(const QString &imagePath) {
-    auto pre = std::chrono::high_resolution_clock::now();
+int ActionProcessor::process(const QString &imagePath) {
+    try {
+        auto pre = std::chrono::high_resolution_clock::now();
 
-    picture_vector image = photoprocessor.process(imagePath);
+        picture_vector image = photoprocessor.process(imagePath);
 
-    auto predicted = serviceIdentification->identify(image);
+        auto predicted = serviceIdentification->identify(image);
 
-    action->execute(predicted);
+        action->execute(predicted);
 
-    auto post = std::chrono::high_resolution_clock::now();
-    qDebug() << "Action réalisée en " << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) << " ms";
+        auto post = std::chrono::high_resolution_clock::now();
+        qDebug() << "Action réalisée en " << QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(post - pre).count()) << " ms";
+        return 0; // Success
+    } catch (const std::runtime_error &e) {
+        qDebug() << "Erreur : " << e.what();
+        throw e;
+        return 1; // Failure
+    } catch (const std::exception &e) {
+        qDebug() << "Erreur inattendue : " << e.what();
+        throw e;
+        return 1; // Failure
+    }
 }

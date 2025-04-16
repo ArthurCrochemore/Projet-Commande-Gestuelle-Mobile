@@ -12,7 +12,7 @@ void CameraController::takePicture(const QString &imagePath) {
     // Code to take a picture
     qDebug() << "Image sauvegardée à:" << imagePath;
 
-    auto actionType = IdentifyActionFactory::VOLUME; // TODO : choix depuis l'UI
+    auto actionType = IServiceIdentifyAction::VOLUME; // TODO : choix depuis l'UI
 
     ActionProcessor actionProcessor(actionType);
 

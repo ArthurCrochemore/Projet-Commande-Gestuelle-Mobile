@@ -1,5 +1,6 @@
 #include <chrono>
 #include <QString>
+#include <memory>
 
 #include <QDebug> // TODO : retirer
 
@@ -14,13 +15,13 @@
 class ActionProcessor {
 private:
     PhotoProcessor photoprocessor;
-    IServiceIdentifyAction* serviceIdentification;
-    IExecuteActionCommand* action;
+    std::unique_ptr<IServiceIdentifyAction> serviceIdentification; // Utilisation d'un std::unique_ptr
+    std::unique_ptr<IExecuteActionCommand> action;
 
 public:
     ActionProcessor(uint8_t actionType);
 
-    void process(const QString &imagePath);
+    int process(const QString &imagePath);
 };
 
 #endif // ACTIONPROCESSOR_H
