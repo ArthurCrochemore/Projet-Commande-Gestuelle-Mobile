@@ -8,7 +8,7 @@
  */
 picture_vector PhotoProcessor::process(const QString &imagePath) {
     if (!QFile::exists(imagePath)) {
-        throw std::runtime_error("Le chemin de l'image semnble inexistant : " + imagePath.toStdString());
+        throw std::runtime_error("Le chemin de l'image semble inexistant : " + imagePath.toStdString());
     }
 
     QImage image = QImage(imagePath);

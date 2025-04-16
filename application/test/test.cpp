@@ -13,13 +13,13 @@ int main(int argc, char *argv[]) {
     int status = 0;
 
     status |= QTest::qExec(new TestActionProcessor, argc, argv);
-    // status |= QTest::qExec(new TestCameraController, argc, argv);
-    // status |= QTest::qExec(new TestClassifier, argc, argv);
-    // status |= QTest::qExec(new TestExecuteActionCommand, argc, argv);
-    // status |= QTest::qExec(new TestImageAdapter, argc, argv);
-    // status |= QTest::qExec(new TestPhotoProcessor, argc, argv);
-    // status |= QTest::qExec(new TestPreprocessingDecorator, argc, argv);
-    // status |= QTest::qExec(new TestServiceIdentify, argc, argv);
+    status |= QTest::qExec(new TestCameraController, argc, argv);
+    status |= QTest::qExec(new TestClassifier, argc, argv);
+    status |= QTest::qExec(new TestExecuteActionCommand, argc, argv);
+    status |= QTest::qExec(new TestImageAdapter, argc, argv);
+    status |= QTest::qExec(new TestPhotoProcessor, argc, argv);
+    status |= QTest::qExec(new TestPreprocessingDecorator, argc, argv);
+    status |= QTest::qExec(new TestServiceIdentify, argc, argv);
 
     return status;
 }
