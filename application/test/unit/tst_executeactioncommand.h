@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/application/executeactioncommand.h"
 
 class TestExecuteActionCommand: public QObject {

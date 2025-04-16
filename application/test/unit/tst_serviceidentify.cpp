@@ -24,13 +24,13 @@ void TestServiceIdentify::identifyActionBrightnessTest() {
 }
 
 void TestServiceIdentify::identifyActionFactoryTest() {
-    IServiceIdentifyAction* action = IdentifyActionFactory::createIdentifyAction(IdentifyActionFactory::VOLUME);
-    QVERIFY(action != nullptr);
-    QVERIFY(dynamic_cast<ServiceIdentifyActionVolume*>(action) != nullptr); // Check if the action is of the correct type
-    delete action; // Clean up
+    auto& provider = IdentifyActionProvider::instance();
 
-    action = IdentifyActionFactory::createIdentifyAction(IdentifyActionFactory::BRIGHTNESS);
+    auto action = provider.createIdentifyAction(IServiceIdentifyAction::VOLUME);
     QVERIFY(action != nullptr);
-    QVERIFY(dynamic_cast<ServiceIdentifyActionBrightness*>(action) != nullptr); // Check if the action is of the correct type
-    delete action; // Clean up
+    QVERIFY(dynamic_cast<ServiceIdentifyActionVolume*>(action.get()) != nullptr); // Check if the action is of the correct type
+
+    action = provider.createIdentifyAction(IServiceIdentifyAction::BRIGHTNESS);
+    QVERIFY(action != nullptr);
+    QVERIFY(dynamic_cast<ServiceIdentifyActionBrightness*>(action.get()) != nullptr); // Check if the action is of the correct type
 }

@@ -13,8 +13,8 @@ void TestExecuteActionCommand::executeActionCommandVolumeNothingTest() {
     QVERIFY(true); // Remplacer par la logique de test réelle
 }
 void TestExecuteActionCommand::executeActionCommandVolumeErrorTest() {
-    // TODO : Implémenter le test pour le cas d'erreur
-    QVERIFY(true); // Remplacer par la logique de test réelle
+    ExecuteActionCommandVolume* executeActionCommand = new ExecuteActionCommandVolume();
+    QVERIFY_EXCEPTION_THROWN(executeActionCommand->execute(3), std::invalid_argument);
 }
 
 void TestExecuteActionCommand::executeActionCommandBrightnessUpTest() {
@@ -30,8 +30,8 @@ void TestExecuteActionCommand::executeActionCommandBrightnessNothingTest() {
     QVERIFY(true); // Remplacer par la logique de test réelle
 }
 void TestExecuteActionCommand::executeActionCommandBrightnessErrorTest() {
-    // TODO : Implémenter le test pour le cas d'erreur
-    QVERIFY(true); // Remplacer par la logique de test réelle
+    ExecuteActionCommandBrightness* executeActionCommand = new ExecuteActionCommandBrightness();
+    QVERIFY_EXCEPTION_THROWN(executeActionCommand->execute(3), std::invalid_argument);
 }
 
 

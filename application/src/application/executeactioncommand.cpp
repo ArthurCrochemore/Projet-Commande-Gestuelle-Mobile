@@ -21,8 +21,7 @@ void ExecuteActionCommandVolume::execute(uint8_t predicted) const {
             qDebug() << "Diminuer le volume";
             break;
         default:
-            qDebug() << "Action inconnue pour le volume";
-            // TODO : gestion d'erreur ? 
+            throw std::invalid_argument("Action inconnue pour le volume : " + std::to_string(predicted));
             break;
     }
 }
@@ -48,16 +47,19 @@ void ExecuteActionCommandBrightness::execute(uint8_t predicted) const {
             qDebug() << "Diminuer la brightness";
             break;
         default:
-            qDebug() << "Action inconnue pour la brightness";
-            // TODO : gestion d'erreur ? 
+            throw std::invalid_argument("Action inconnue pour la brightness : " + std::to_string(predicted)); 
             break;
     }
 }
 
 IExecuteActionCommand* ExecuteActionCommandFactory::createAction(uint8_t actionType) {
     switch (actionType) {
-        case IdentifyActionFactory::VOLUME: return new ExecuteActionCommandVolume();
-        case IdentifyActionFactory::BRIGHTNESS: return new ExecuteActionCommandBrightness();
-        default: return nullptr;
+        case IServiceIdentifyAction::VOLUME: 
+            return new ExecuteActionCommandVolume();
+        case IServiceIdentifyAction::BRIGHTNESS: 
+            return new ExecuteActionCommandBrightness();
+        default: 
+            throw std::invalid_argument("Type d'action inconnu : " + std::to_string(actionType));
+            return nullptr;
     }
 }

@@ -7,7 +7,10 @@
  * @return : image vectorisée
  */
 picture_vector PhotoProcessor::process(const QString &imagePath) {
-    QImage image = QImage(imagePath);
+    if (!QFile::exists(imagePath)) {
+        throw std::runtime_error("Le chemin de l'image semble inexistant : " + imagePath.toStdString());
+    }
 
+    QImage image = QImage(imagePath);
     return QImageToVectorAdapter().vectorize(image);
 }

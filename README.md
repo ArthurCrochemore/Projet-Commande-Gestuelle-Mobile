@@ -22,6 +22,12 @@ Pour la version orientée objet du projet, j'ai choisi d'implémenter six design
 - **Observer** : Implémentation du pattern Observer dans le prétraitement des données pour faciliter l'évolution du code.  
 - **Strategy** : Mise en place d’une stratégie de reconnaissance dans `IServiceIdentifyAction` pour rendre le code plus modulable.  
 - **Dependency Injection** : Injection de `IServiceIdentifyAction*` dans `ActionProcessor` plutôt que d'instancier directement une action.
+ 
+## **Tests** 
+Pour cette version, j'ai aussi implémenté des tests avec QTest dont voici le détail :
+https://docs.google.com/spreadsheets/d/1bxCM-5lw527qY6GeajQD7X5qmVMorkmmGQg93FImOjM/edit?gid=0#gid=0
+
+Il peuvent être trouvé dans le dossier application/test et utilisé dans le projet application/test.pro
 
 ---
 

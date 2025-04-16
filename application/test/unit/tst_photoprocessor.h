@@ -1,5 +1,4 @@
 #include <QTest>
-#include <QDebug>
 #include "../../src/application/photoprocessor.h"
 
 class TestPhotoProcessor: public QObject {
@@ -9,6 +8,7 @@ private:
     picture_vector data;
 
 private slots:
-    void processTest();
+    void processValidTest();
+    void processWrongPathTest();
 };
 

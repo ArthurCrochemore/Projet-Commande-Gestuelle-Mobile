@@ -1,3 +1,4 @@
+#include <QFile>
 #include <QImage>
 
 #ifndef PHOTOPROCESSOR_H
