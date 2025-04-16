@@ -4,7 +4,7 @@
 
 void TestCameraController::processValidTest() {
     QString imagePath = "../../../learning/database/volume/up0_volume.jpg";
-    uint8_t actionType = IdentifyActionFactory::VOLUME;
+    uint8_t actionType = IServiceIdentifyAction::VOLUME;
 
     CameraController cameraController;
 
@@ -17,7 +17,7 @@ void TestCameraController::processValidTest() {
 
 void TestCameraController::processInvalidImageTest() {
     QString invalidPath = "fake_path.jpg"; // volontairement invalide
-    uint8_t actionType = IdentifyActionFactory::VOLUME;
+    uint8_t actionType = IServiceIdentifyAction::VOLUME;
     ActionProcessor actionProcessor(actionType);
 
     CameraController cameraController;

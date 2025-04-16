@@ -2,8 +2,14 @@
 
 ActionProcessor::ActionProcessor(uint8_t actionType) {
     auto& provider = IdentifyActionProvider::instance();
-    serviceIdentification = provider.createIdentifyAction(actionType);
-    action = std::unique_ptr<IExecuteActionCommand>(ExecuteActionCommandFactory::createAction(actionType)); // Conversion explicite en std::unique_ptr
+
+    try {
+        serviceIdentification = provider.createIdentifyAction(actionType);
+        action = std::unique_ptr<IExecuteActionCommand>(ExecuteActionCommandFactory::createAction(actionType)); // Conversion explicite en std::unique_ptr
+    } catch (const std::invalid_argument &e) {
+        qDebug() << "Erreur : " << e.what();
+        throw e;
+    }
 }
 
 /**

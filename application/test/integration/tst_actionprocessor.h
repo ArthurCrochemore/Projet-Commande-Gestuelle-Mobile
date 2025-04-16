@@ -5,5 +5,7 @@ class TestActionProcessor: public QObject {
     Q_OBJECT
 
 private slots:
-    void processTest();
+    void processCorrectTest();
+    void processWrongPathTest();
+    void processWrongActionTest();
 };
